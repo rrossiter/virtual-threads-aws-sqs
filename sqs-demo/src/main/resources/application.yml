@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: sqs-demo
+server:
+  port: 8088
+cloud:
+  aws:
+    region:
+      static: sa-east-1
+    credentials:
+      access-key: test
+      secret-key: test
+    sqs:
+      endpoint: http://localhost:4566
+
+app:
+  queue:
+    name: order-events-queue
+
+# Configurações de batch externalizadas (usadas pelo AwsConfig via @Value se preferir)
+sqs:
+  batch:
+    max-messages-per-poll: 10
+    max-concurrent-messages: 20
+    poll-timeout-seconds: 20

@@ -1,0 +1,26 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# Java
+*.class
+
+# Maven
+# Either ignore the target directory (standard Maven convention) or specific files
+target/
+# Uncomment below for specific files inside target if the above line is not used
+# /target/*.jar
+# /target/*.war
+# /target/*.ear
+
+# Gradle (if used)
+.gradle/
+build/
+
+# Mac (if applicable)
+.DS_Store
+
+# Log files
+*.log
+log/

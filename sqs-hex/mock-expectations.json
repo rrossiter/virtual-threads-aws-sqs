@@ -1,0 +1,24 @@
+[
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/api/products"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": {
+        "Content-Type": ["application/json"]
+      },
+      "body": {
+        "type": "JSON",
+        "json": [
+          { "id": 1, "name": "Notebook Dell",    "category": "Informatica", "available": true  },
+          { "id": 2, "name": "Mouse Logitech",   "category": "Perifericos", "available": true  },
+          { "id": 3, "name": "Teclado Mecanico", "category": "Perifericos", "available": false },
+          { "id": 4, "name": "Monitor LG 27",    "category": "Informatica", "available": true  },
+          { "id": 5, "name": "Headset Sony",     "category": "Audio",       "available": true  }
+        ]
+      }
+    }
+  }
+]

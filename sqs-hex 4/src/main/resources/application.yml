@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: sqs-hex
+
+  threads:
+    virtual:
+      enabled: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      retries: 3
+      properties:
+        spring.json.add.type.headers: false
+        delivery.timeout.ms: 10000
+        request.timeout.ms: 5000
+        # Buffer local antes de enviar ao broker — limitar para não estourar heap
+        buffer.memory: 16777216        # 16MB (padrão é 32MB)
+        batch.size: 16384              # 16KB por batch de envio
+        linger.ms: 5                   # aguarda 5ms para agrupar mensagens
+
+server:
+  port: 8088
+
+cloud:
+  aws:
+    region:
+      static: sa-east-1
+    credentials:
+      access-key: test
+      secret-key: test
+    sqs:
+      endpoint: http://localhost:4566
+
+app:
+  queue:
+    name: order-events-queue
+
+kafka:
+  topic:
+    orders: kafka-orders-received
+
+product:
+  api:
+    url: http://localhost:1080
+
+# Configurações de SQS ajustadas para 1 vCPU / 2GB
+sqs:
+  listener:
+    max-messages-per-poll: 10    # limite máximo do SQS — não alterar
+    max-concurrent-messages: 20  # 20 VTs ativas por vez — seguro para 1 vCPU/2GB
+    poll-timeout: 20             # long-polling em segundos
